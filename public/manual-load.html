@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga Manual - Sistema de Gestión de Contenedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="manual-load.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <img src="img/Logo1.png" height="40" class="me-2">
+            <a class="navbar-brand" href="#">Sistema de Gestión de Contenedores</a>
+            <div class="d-flex">
+                <span class="navbar-text me-3">Bienvenido, <span id="adminName">Administrador</span></span>
+                <a href="#" class="btn btn-outline-light btn-sm" id="logoutBtn">Cerrar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Después del div container mt-4 y antes del row -->
+    <div class="container mt-4">
+        <!-- Lista de Viajes -->
+        <div class="mb-4">
+            <h4>Viajes Planificados</h4>
+            <div id="tripsList" class="accordion">
+                <!-- Los viajes se agregarán aquí dinámicamente -->
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Formulario de Entrada de Contenedor -->
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h5 class="mb-0">Agregar Contenedor</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="containerForm">
+                            <div class="mb-3">
+                                <label for="containerId" class="form-label">ID del Contenedor</label>
+                                <input type="number" class="form-control" id="containerId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="containerType" class="form-label">Tipo de Contenedor</label>
+                                <select class="form-select" id="containerType" required>
+                                    <option value="">Seleccionar Tipo</option>
+                                    <option value="A">Tipo A (18m)</option>
+                                    <option value="B">Tipo B (15m)</option>
+                                    <option value="C">Tipo C (12m)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="weight" class="form-label">Peso (toneladas)</label>
+                                <input type="number" class="form-control" id="weight" min="1" max="20" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Agregar Contenedor</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Resumen -->
+                <div class="card shadow mt-3">
+                    <div class="card-body">
+                        <h6>Resumen de Carga</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Total de Viajes:</span>
+                            <span id="totalTrips">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Total de Contenedores:</span>
+                            <span id="totalContainers">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Peso Total:</span>
+                            <span id="totalWeight">0 toneladas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Contenedores -->
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Contenedores Agregados</h5>
+                        <button class="btn btn-success" id="finalizeBtn">Finalizar Carga</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Contenedor</th>
+                                        <th>Tipo</th>
+                                        <th>Peso (toneladas)</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="containerList">
+                                    <!-- Las entradas se agregarán dinámicamente aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actualización de la sección de scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/manual-load.js"></script>
+    <!-- Eliminar esta línea duplicada -->
+</body>
+</html>

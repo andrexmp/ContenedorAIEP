@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Cliente - Sistema de Gestión de Contenedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <img src="img/Logo1.png" height="40" class="me-2"><a class="navbar-brand" href="#">Sistema de Gestión de Contenedores</a>
+            <!-- En la barra de navegación -->
+            <div class="d-flex">
+                <span class="navbar-text me-3">Bienvenido, <span id="clientName">Cliente</span></span>
+                <button onclick="handleLogout()" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="mb-0">Informes de Envío</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID de Informe</th>
+                                <th>Fecha de Envío</th>
+                                <th>Total Contenedores</th>
+                                <th>Peso Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample data rows -->
+                            <tr>
+                                <td>REP001</td>
+                                <td>2024-01-15</td>
+                                <td>25</td>
+                                <td>450 tons</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="bi bi-file-pdf"></i> Ver PDF
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>REP002</td>
+                                <td>2024-01-18</td>
+                                <td>18</td>
+                                <td>320 tons</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="bi bi-file-pdf"></i> Ver PDF
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function handleLogout() {
+            Swal.fire({
+                title: '¿Cerrar sesión?',
+                text: "¿Estás seguro que deseas salir?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, cerrar sesión',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Limpiar datos de sesión
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userRole');
+                    localStorage.removeItem('userName');
+                    
+                    // Redirigir al login
+                    window.location.href = '/';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

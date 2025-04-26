@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Sistema de Gestión de Contenedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .dashboard-card {
+            border-left: 5px solid #0d6efd;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <img src="img/Logo1.png" height="40" class="me-2"><a class="navbar-brand" href="#">Sistema de Gestión de Contenedores</a>
+            <!-- En la barra de navegación -->
+            <div class="d-flex">
+                <span class="navbar-text me-3">Bienvenido, <span id="adminName">Administrador</span></span>
+                <button onclick="handleLogout()" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Indicadores Superiores -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <h6 class="text-muted">Contenedores Enviados</h6>
+                    <h3 class="text-primary">145</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <h6 class="text-muted">Viajes Realizados</h6>
+                    <h3 class="text-primary">12</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <h6 class="text-muted">Clientes Registrados</h6>
+                    <h3 class="text-primary">8</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <h6 class="text-muted">Peso Promedio por Viaje</h6>
+                    <h3 class="text-primary">417 tons</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Registros de Carga</h5>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newRecordModal">
+                    Nuevo Registro
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID Registro</th>
+                                <th>Fecha de Creación</th>
+                                <th>Total Contenedores</th>
+                                <th>Peso Total</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>REC001</td>
+                                <td>2024-01-15</td>
+                                <td>30</td>
+                                <td>520 tons</td>
+                                <td><span class="badge bg-success">Finalizado</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-info">Ver</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>REC002</td>
+                                <td>2024-01-18</td>
+                                <td>15</td>
+                                <td>280 tons</td>
+                                <td><span class="badge bg-warning">En Proceso</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-info">Ver</button>
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nuevo Registro Modal -->
+    <div class="modal fade" id="newRecordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Nuevo Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Seleccionar Tipo de Carga:</h6>
+                    <div class="d-grid gap-2">
+                        <a href="manual-load.html" class="btn btn-outline-primary">Carga Manual</a>
+                        <button class="btn btn-outline-primary" id="excelUploadBtn">
+                            Cargar Excel
+                            <input type="file" class="d-none" id="excelFileInput" accept=".xlsx,.xls">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function handleLogout() {
+            Swal.fire({
+                title: '¿Cerrar sesión?',
+                text: "¿Estás seguro que deseas salir?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, cerrar sesión',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userRole');
+                    localStorage.removeItem('userName');
+                    window.location.href = '/';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
