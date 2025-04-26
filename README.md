@@ -58,9 +58,30 @@ server.js
 ```
 
 ## Estructura del Proyecto
-
-*(Aquí puedes agregar un esquema de carpetas si lo deseas.)*
-
+```bash
+Container_Beta/
+├── database/
+│   └── schema.sql
+├── js/
+│   ├── containerService.js
+│   ├── database.js
+│   └── validation.js
+├── public/
+│   ├── admin-dashboard.html
+│   ├── client-dashboard.html
+│   ├── index.html
+│   ├── manual-load.html
+│   └── js/
+│       ├── auth.js
+│       └── server.js
+├── tests/
+│   ├── functional.test.js
+│   ├── integration.test.js
+│   ├── system.test.js
+│   └── unit.test.js
+├── server.js
+└── package.json
+```
 ## Ejecución
 
 ### Iniciar el servidor
@@ -107,6 +128,13 @@ npm test
 
 ## Notas Adicionales
 
-*(Aquí puedes agregar información extra como mejoras futuras o agradecimientos.)*
+Este proyecto fue desarrollado como parte de un ejercicio académico orientado a la simulación de un sistema real de gestión de contenedores marítimos.
+Nos permitió comprender y aplicar conceptos como la arquitectura modular, la conexión a bases de datos, la creación de rutas y controladores, y el uso de pruebas automatizadas en un entorno realista.
+
+## Agradecimientos
+Queremos agradecer especialmente al profesor Ricardo Martínez por la propuesta de un ejercicio tan práctico y realista.
+Gracias a este desafío, tuvimos la oportunidad de explorar áreas que desconocíamos, como la estructuración profesional de un backend completo, la importancia de los flujos de carga de datos, y la validación de procesos a través de pruebas automatizadas.
+
+Su enfoque práctico nos ayudó a entender mejor la dinámica de proyectos de desarrollo reales y nos motivó a profundizar en el uso de tecnologías como Node.js y SQLite3.
 
 
